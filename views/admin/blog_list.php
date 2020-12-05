@@ -35,38 +35,27 @@ include_once('layouts/sidebar.php')
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
-							<div class="card-header">
-								<div class="card-tools">
-									<div class="input-group input-group-sm" style="width: 150px;">
-										<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-										<div class="input-group-append">
-											<button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-										</div>
-									</div>
-								</div>
-							</div>
 							<!-- /.card-header -->
 							<div class="card-body table-responsive p-0" style="height: 800px;">
 								<table class="table table-head-fixed">
 									<thead>
 										<tr>
-											<th>ID</th>
+											<th>STT</th>
 											<th>Tiêu đề</th>
 											<th>Thumbail</th>
 											<th>Hành động</th>
 										</tr>
 									</thead>
-									<?php foreach( $posts as $row )  { ?>
+									<?php $i=0; foreach( $posts as $row )  { ?>
 										<tr>
-											<td><?php echo $row['id'] ?></td>
+											<td><?php $i++; echo $i ?></td>
 											<td><?php echo $row['title'] ?></td>
 											<td><img style="max-height: 50px;" src="<?php echo $row['thumbnail'] ?>" ></td>
 											<td  style="display: flex;">
 												<a href="index.php?mod=post&act=detail&id=<?php echo $row['id'] ?>" class="btn btn-primary">Detail</a>
 												<a href="index.php?mod=post&act=edit&id=<?php echo $row['id'] ?>" class="btn btn-success">Edit</a>
-												<a href="index.php?mod=post&act=hide&id=<?php echo $row['id'] ?>" class="btn btn-dark">Hide</a>
-												<a href="index.php?mod=post&act=delete&id=<?php echo $row['id'] ?>" class="btn btn-danger">Delete</a>
+												<a href="index.php?mod=post&act=hide&id=<?php echo $row['id'] ?>" class="btn btn-dark" onclick="return confirm('Bạn có chắc chắn muốn ẩn?');">Hide</a>
+												<a href="index.php?mod=post&act=delete&id=<?php echo $row['id'] ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa');">Delete</a>
 											</td>
 										</tr>
 

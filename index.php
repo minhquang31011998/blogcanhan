@@ -2,10 +2,9 @@
 session_start();
 	$mod = isset($_GET['mod'])?$_GET['mod']:'home'; // module
 	$act = isset($_GET['act'])?$_GET['act']:'index'; // action
-	$_SESSION['isLogin']=isset($_SESSION['isLogin'])?$_SESSION['isLogin']:'false';
-
+	$_SESSION['isLogin']=isset($_SESSION['isLogin'])?$_SESSION['isLogin']:false;
 	switch ($mod) {
-		// Trang danhf cho nguowif dung
+		// Trang danh cho nguoi dung
 		case 'home':
 		require_once('controllers/HomeController.php');
 		$controller_obj = new HomeController();
@@ -16,6 +15,12 @@ session_start();
 			break;
 			case 'detail':
 			$controller_obj->detail();
+			break;
+			case 'listp':
+			$controller_obj->getPostwithCategory();
+			break;
+			default:
+			$controller_obj->error();
 			break;			
 		}
 		break;
@@ -30,21 +35,19 @@ session_start();
 			case 'login_process':
 			$controller_obj->login_process();
 			break;
-			case '404':
-			$controller_obj->error();
-			break;
 			default:
-			echo "<br> >>> ACT 404";
+			$controller_obj->error();
 			break;
 		}
 		break;
+		case 'category':
+		require_once('controllers/PostController.php');
+		$controller_obj = new PostController();
 	}
 
 		// Trang danh cho quan tri
 
-
-	if(isset($_SESSION['isLogin'])){
-
+	if($_SESSION['isLogin']==true){
 		switch ($mod) {
 			case 'category':
 			require_once('controllers/CategoryController.php');
@@ -70,6 +73,9 @@ session_start();
 				break;
 				case 'update':
 				$controller_obj->update();
+				break;
+				case 'delete4ever':
+				$controller_obj->delete4ever();
 				break;
 				case 'delete':
 				$controller_obj->delete();
@@ -188,8 +194,7 @@ session_start();
 	}
 
 	else{
-		header('Location: index.php?mod=auth&act=login');
+		@header("Location: index.php?mod=auth&act=login");
+		exit();
 	}
-
-	
-	?>
+?>

@@ -15,6 +15,8 @@
 
 		function logout(){
 			session_destroy();
+			setcookie("email",$_COOKIE['email'],time()-50,"/");
+			setcookie("password",$_COOKIE['password'],time()-50,"/");
 			header("Location: index.php");
 		}
 

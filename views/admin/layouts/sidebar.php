@@ -81,12 +81,6 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.php?mod=category&act=list" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách danh mục</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="index.php?mod=category&act=add" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới danh mục</p>
@@ -106,7 +100,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               
               <p>
@@ -123,7 +117,7 @@
               </li>
               
             </ul>
-          </li>
+          </li> -->
 
           
         </ul>

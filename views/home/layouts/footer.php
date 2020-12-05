@@ -23,11 +23,6 @@
                             <div class="widget-content">
                                 <nav>
                                     <ul>
-                                        <li><a href="#">Doom</a></li>
-                                        <li><a href="#">Grand Theft Auto</a></li>
-                                        <li><a href="#">Bloodborne</a></li>
-                                        <li><a href="#">God of war</a></li>
-                                        <li><a href="#">Persona 5</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -43,11 +38,7 @@
                             <div class="widget-content">
                                 <nav>
                                     <ul>
-                                        <li><a href="#">Testimanials</a></li>
-                                        <li><a href="#">Reviews</a></li>
-                                        <li><a href="#">New Games</a></li>
-                                        <li><a href="#">Forum</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -63,11 +54,7 @@
                             <div class="widget-content">
                                 <nav>
                                     <ul>
-                                        <li><a href="#">Doom</a></li>
-                                        <li><a href="#">Grand Theft Auto</a></li>
-                                        <li><a href="#">Bloodborne</a></li>
-                                        <li><a href="#">God of war</a></li>
-                                        <li><a href="#">Persona 5</a></li>
+                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -90,15 +77,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     </div>
                     <div class="col-12 col-sm-7">
                         <!-- Footer Nav -->
-                        <div class="footer-nav">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="game-review.html">Games</a></li>
-                                <li><a href="post.html">Articles</a></li>
-                                <li><a href="single-game-review.html">Reviews</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -109,6 +87,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script type="text/javascript" src="public/home/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
     <script type="text/javascript" src="public/home/js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="public/home/js/plugins/plugins.js"></script>
     <script type="text/javascript" src="public/home/js/active.js"></script>

@@ -10,7 +10,7 @@ class User{
 		
 		
 		// Câu lệnh truy vấn
-		$query = "SELECT * FROM users WHERE delete_at is NULL";
+		$query = "SELECT * FROM users WHERE deleted_at is NULL";
 
 		// Thực thi câu lệnh
 		$result = $this->connection_obj->conn->query($query);
@@ -33,14 +33,14 @@ class User{
 		return $user;
 	}
 	function update($data){
-		$query ="UPDATE users SET name='".$data['name']."',email='".$data['email']."',update_at='".$data['update_at']."' WHERE id =".$data['id'];
+		$query ="UPDATE users SET name='".$data['name']."',email='".$data['email']."',updated_at='".$data['updated_at']."' WHERE id =".$data['id'];
 
     
 		$status = $this->connection_obj->conn->query($query);
 		return $status;
 	}
 	function delete($data){
-		$query = "UPDATE users  SET delete_at='".$data['delete_at']."' WHERE id =".$data['id'];
+		$query = "UPDATE users  SET deleted_at='".$data['deleted_at']."' WHERE id =".$data['id'];
 
 
 		$result = $this->connection_obj->conn->query($query);

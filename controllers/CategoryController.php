@@ -25,7 +25,7 @@ class CategoryController{
 
 	function detail(){
 
-		$uid = $_GET['id'];
+		$uid = addslashes($_GET['id']);
 		$category = $this->model_obj->find($uid);
 		require_once('views/admin/detail.php');
 	}
@@ -37,19 +37,24 @@ class CategoryController{
 
 	function store(){
 		$data = $_POST;
-		
-
+		$data['name']=$this->test_input($_POST['name']);
+		$cate = $this->model_obj->checkIsset($data['name']);
+		if($cate == NULL){
 		$status = $this->model_obj->create($data);
 		if($status == TRUE){
 			setcookie('msg','Thêm mới thành công',time() + 5);
 		}else{
 			setcookie('msg','Thêm mới thất bại',time() + 5);
 		}
-		header("Location: index.php?mod=category&act=list");
+		header("Location: index.php?mod=category&act=listedit	");
+	}else{
+		setcookie('check','Tiêu đề đã có người sử dụng',time() + 5);
+        header("Location: index.php?mod=category&act=add");
+	}
 	}
 
 	function edit(){
-		$uid = $_GET['id'];
+		$uid = addslashes($_GET['id']);
 		$category = $this->model_obj->find($uid);
 		$categories=$this->model_obj->getParent();
 
@@ -59,6 +64,7 @@ class CategoryController{
 	function update(){
 
 		$data = $_POST;
+		$data['name']=$this->test_input($_POST['name']);
 		$status = $this->model_obj->update($data);
 		if($status == TRUE){
 			setcookie('msg','Update thành công',time() + 5);
@@ -70,7 +76,7 @@ class CategoryController{
 
 	function delete(){
 		$data=$_GET;
-		$data['delete_at']='"'.date('y-m-d h:i:s').'"';
+		$data['deleted_at']='"'.date('y-m-d h:i:s').'"';
 		$status=$this->model_obj->delete($data);
 		if($status == TRUE){
 			setcookie('msg','Xóa thành công',time() + 5);
@@ -88,14 +94,38 @@ class CategoryController{
 	}
 	function restore(){
 		$data=$_GET;
-		$data['delete_at']='NULL';
+		$data['deleted_at']='NULL';
 		$status=$this->model_obj->delete($data);
-
+		if($status == TRUE){
+			setcookie('msg','Khôi phục thành công',time() + 5);
+		}else{
+			setcookie('msg','Khôi phục thất bại',time() + 5);
+		}
 		header("location: index.php?mod=category&act=deletelist");
 
 	}
+	function delete4ever(){
+    	$uid=addslashes($_GET['id']);
+
+
+    	$status=$this->model_obj->delete4ever($uid);
+        if($status == TRUE){
+            setcookie('msg','Xóa thành công',time() + 5);
+        }else{
+            setcookie('msg','Xóa thất bại',time() + 5);
+        }
+    	header("location: index.php?mod=category&act=deletelist");
+
+    }
 	function error(){
 		echo "<br> >>> ACT 404";
+	}
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		$date = preg_replace('/\s+/', ' ', $data);
+		return $data;
 	}
 }
 

@@ -24,7 +24,6 @@
 <!-- <script src="public/admin/dist/js/demo.js"></script> -->
 <script src="public/admin/plugins/select2/js/select2.full.min.js"></script>
 <script src="public/admin/plugins/summernote/summernote-bs4.min.js"></script>
-
 <script>
   $(function () {
    
@@ -73,8 +72,127 @@
     slug = slug.replace(/\@\-|\-\@|\@/gi, '');
     //In slug ra textbox có id “slug”
     document.getElementById('slug').value = slug;
-}
+ }
+ </script>
+ <script src="public/admin/dist/js/jquery.validate.js"></script>
+  <script src="public/admin/dist/js/jquery.validate.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $('#formCreateBlog').validate({ // initialize the plugin
+      rules: {
+        thumbnail : {
+          required :true,
+        },
+        title : {
+          required :true,
+          maxlength: 255,
+          minlength: 10,
+        },
+        description : {
+          required :true,
+          maxlength: 255,
+          minlength: 10,
+        },
+        content : {
+          required :true,
+        },
+      },
+      messages: {
+        thumbnail : {
+          required :"Vui lòng chọn hình ảnh",
+          
+        },
+        title : {
+          required :"Vui lòng nhập tiêu đề",
+          minlength: "tiêu đề có độ dài ít nhất 10 ký tự",
+          maxlength : "Tiêu đề có độ dài tối đa 250 ký tự"
+        },
+        description : {
+          required :"Vui lòng nhập mô tả",
+          minlength: "Mô tả có độ dài ít nhất 10 ký tự",
+          maxlength : "Mô tả có độ dài tối đa 250 ký tự"
+        },
+
+        content : {
+          required :"Vui lòng nhập nội dung",
+        },
+      }
+    });
+    $('#formEditBlog').validate({ // initialize the plugin
+      rules: {
+      //   thumbnail : {
+      //     required :true,
+      //   },
+        title : {
+          required :true,
+          maxlength: 255,
+          minlength: 10,
+        },
+        description : {
+          required :true,
+          maxlength: 255,
+          minlength: 10,
+        },
+        content : {
+          required :true,
+        },
+      },
+      messages: {
+        // thumbnail : {
+        //   required :"Vui lòng chọn hình ảnh",
+          
+        // },
+        title : {
+          required :"Vui lòng nhập tiêu đề",
+          minlength: "tiêu đề có độ dài ít nhất 10 ký tự",
+          maxlength : "Tiêu đề có độ dài tối đa 250 ký tự"
+        },
+        description : {
+          required :"Vui lòng nhập mô tả",
+          minlength: "Mô tả có độ dài ít nhất 10 ký tự",
+          maxlength : "Mô tả có độ dài tối đa 250 ký tự"
+        },
+
+        content : {
+          required :"Vui lòng nhập nội dung",
+        },
+      }
+    });
+    $('#formAddCate').validate({ // initialize the plugin
+      rules: {
+        name : {
+          required :true,
+          maxlength: 30,
+          minlength: 2,
+        },
+      },
+      messages: {
+        name : {
+          required :"Vui lòng nhập tiêu đề",
+          minlength: "tiêu đề có độ dài ít nhất 2 ký tự",
+          maxlength : "Tiêu đề có độ dài tối đa 30 ký tự"
+      }
+      }
+    });
+    $('#formEditCate').validate({ // initialize the plugin
+      rules: {
+        name : {
+          required :true,
+          maxlength: 30,
+          minlength: 2,
+        },
+      },
+      messages: {
+        name : {
+          required :"Vui lòng nhập tiêu đề",
+          minlength: "tiêu đề có độ dài ít nhất 2 ký tự",
+          maxlength : "Tiêu đề có độ dài tối đa 30 ký tự"
+      }
+      }
+    });           
+  });
 </script>
+
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 </body>
 </html>

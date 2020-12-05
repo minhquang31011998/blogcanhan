@@ -36,14 +36,28 @@ class HomeController{
 		
 
 		$uid = $_GET['id'];
+
 		$row = $this->model_obj->find($uid);
 		require_once('views/home/single-post.php');
 	}
-	
+	function getPostwithCategory(){
+		$slug=$_GET['slug'];
+		$categories = $this->model_cate->getParent();
 
+		$childs = $this->model_cate->getChild();
+		$posts=$this->model_obj->getPostwithCategory($slug);
+		$postss=$this->model_obj->desc();
+		require_once('views/home/category-post.php');
+	}
+	function test_input($data) {
+		$date = preg_replace('/\s+/', ' ', $data);
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 	function error(){
 		echo "<br> >>> ACT 404";
 	}
 }
-
 ?>

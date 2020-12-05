@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -44,7 +43,7 @@
                             </div>
                             <!-- Login Area -->
                             <div class="login-area">
-                                <a href="index.php?mod=auth&act=login"><span>Login / Register</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
+                                <a href="index.php?mod=auth&act=login"><span>Login</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
@@ -75,33 +74,31 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Trang chủ</a></li>
+                                    <li><a href="index.php">Trang chủ</a></li>
                                     <?php foreach ($categories as $value) {?>
-                                        <li><a href="index.php?mod=category&act=listp&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a>
+                                        <li><a href=><?php echo $value['name'] ?></a>
                                             <ul class="dropdown">
-                                             <?php foreach ($childs as $valuep) {
+                                               <?php foreach ($childs as $valuep) {
                                                 if($valuep['parent_id']==$value['id']){?>
-                                                <li><a href="index.php?mod=category&act=listp&slug=<?php echo $valuep['slug'] ?>"><?= $valuep['name'] ?></a></li>
-                                            <?php }} ?>
-
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                              
-                                <li><a href="contact.html">Liên hệ</a></li>
-                            </ul>
+                                                    <li><a href="index.php?mod=home&act=listp&slug=<?php echo $valuep['slug'] ?>"><?= $valuep['name'] ?></a></li>
+                                                <?php }} ?>
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
+                                    <li><a href="contact.html">Liên hệ</a></li>
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
                         </div>
-                        <!-- Nav End -->
-                    </div>
 
-                    <!-- Top Social Info -->
-                    <div class="top-social-info">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <!-- Top Social Info -->
+                        <div class="top-social-info">
+                        <!-- <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a> -->
                     </div>
                 </nav>
             </div>

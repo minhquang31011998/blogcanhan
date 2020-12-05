@@ -10,7 +10,7 @@ class Category{
 		
 		
 		// Câu lệnh truy vấn
-		$query = "SELECT * FROM categories WHERE delete_at is NULL" ;
+		$query = "SELECT * FROM categories WHERE deleted_at is NULL" ;
 
 		// Thực thi câu lệnh
 		$result = $this->connection_obj->conn->query($query);
@@ -35,35 +35,40 @@ class Category{
 	function create($data){
 		if($data['parent_id'] == 0){
 // Viết câu lệnh để thêm dữ liệu
-			$query = "INSERT INTO categories (name, description) VALUES ('".$data['name']."','".$data['description']."')";
+			$query = "INSERT INTO categories (name, description, slug) VALUES (?,?,?)";
+			$stmt = $this->connection_obj->conn->prepare($query);
+			$stmt->bind_param('sss',$data['name'],$data['description'],$data['slug']);
 		}else{
 			
-			$query = "INSERT INTO categories (name, description, parent_id) VALUES ('".$data['name']."','".$data['description']."','".$data['parent_id']."')";
+			$query = "INSERT INTO categories (name, description, slug, parent_id) VALUES (?,?,?,?)";
+			$stmt = $this->connection_obj->conn->prepare($query);
+			$stmt->bind_param('sssi',$data['name'],$data['description'],$data['slug'],$data['parent_id']);
 		}
-		$status = $this->connection_obj->conn->query($query);
-		return $status;
+		$stmt->execute();
+		return $stmt;
 	}
 	function update($data){
 		
 		if($data['parent_id'] == 0){
 
 
-			$query ="UPDATE categories SET name='".$data['name']."',slug='".$data['slug']."' WHERE id =".$data['id'];
-		}
-
-		else{
-			$query ="UPDATE categories SET name='".$data['name']."',parent_id='".$data['parent_id']."',slug='".$data['slug']."' WHERE id =".$data['id'];
+			$query ="UPDATE categories SET name=?,slug=? WHERE id =?";
+			$stmt = $this->connection_obj->conn->prepare($query);
+			$stmt->bind_param('ssi',$data['name'],$data['slug'],$data['id']);
+		}else{
+			$query ="UPDATE categories SET name=?,parent_id=?,slug=? WHERE id =?";
+			$stmt = $this->connection_obj->conn->prepare($query);
+			$stmt->bind_param('sisi',$data['name'],$data['parent_id'],$data['slug'],$data['id']);
 		}
 
 
     // Thực thi câu lệnh
-
-		$status = $this->connection_obj->conn->query($query);
-		return $status;
+		$stmt->execute();
+		return $stmt;
 
 	}
 	function delete($data){
-		$query = "UPDATE categories  SET delete_at=".$data['delete_at']." WHERE id =".$data['id'];
+		$query = "UPDATE categories  SET deleted_at=".$data['deleted_at']." WHERE id =".$data['id'];
 
 
 		$result = $this->connection_obj->conn->query($query);
@@ -72,7 +77,7 @@ class Category{
 
 	}
 	function getChild(){
-		$query = "SELECT * FROM categories WHERE parent_id is not NULL and  delete_at is NULL";
+		$query = "SELECT * FROM categories WHERE parent_id is not NULL and  deleted_at is NULL";
 
 // Thực thi câu lệnh
 		$result =  $this->connection_obj->conn->query($query);
@@ -85,7 +90,7 @@ class Category{
 		return $child;
 	}
 	function getParent(){
-		$query = "SELECT * FROM categories WHERE parent_id is NULL and  delete_at is NULL";
+		$query = "SELECT * FROM categories WHERE parent_id is NULL and  deleted_at is NULL";
 
 // Thực thi câu lệnh
 		$result = $this->connection_obj->conn->query($query);
@@ -98,7 +103,7 @@ class Category{
 		return $categories;
 	}
 	function getParents(){
-		$query = "SELECT * FROM categories WHERE parent_id is NULL and  delete_at is NULL";
+		$query = "SELECT * FROM categories WHERE parent_id is NULL and  deleted_at is NULL";
 
 // Thực thi câu lệnh
 		$result = $this->connection_obj->conn->query($query);
@@ -114,7 +119,7 @@ class Category{
 		
 		
 		// Câu lệnh truy vấn
-		$query = "SELECT * FROM categories WHERE delete_at is not NULL" ;
+		$query = "SELECT * FROM categories WHERE deleted_at is not NULL" ;
 
 		// Thực thi câu lệnh
 		$result = $this->connection_obj->conn->query($query);
@@ -126,6 +131,24 @@ class Category{
 		}
 		return $categories;
 
+	}
+	function delete4ever($id){
+		$query = "DELETE FROM categories WHERE id=".$id;
+
+		$result = $this->connection_obj->conn->query($query);
+
+		return $result;
+
+	}
+	function checkIsset($name){
+		$query = "SELECT * FROM categories WHERE name=?";
+		$stmt = $this->connection_obj->conn->prepare($query);
+		$stmt->bind_param('s',$name);
+		$result=$stmt->execute();
+		$cate=$stmt->fetch();
+		//var_dump($user);
+
+		return $cate;
 	}
 
 

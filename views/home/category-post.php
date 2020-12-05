@@ -8,7 +8,7 @@ require_once('layouts/header.php')
 			<!-- Breadcrumb Text -->
 			<div class="col-12">
 				<div class="breadcrumb-text">
-					<h2>Trang chủ</h2>
+					<h2>Danh mục</h2>
 				</div>
 			</div>
 		</div>
@@ -44,6 +44,7 @@ require_once('layouts/header.php')
 
 
 					<!-- ### Pagination Area ### -->
+					
 				</div>
 			</div>
 

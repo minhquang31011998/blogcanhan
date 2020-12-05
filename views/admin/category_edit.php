@@ -12,7 +12,7 @@ include_once('layouts/sidebar.php')
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Thêm mới danh mục</h1>
+					<h1>Chỉnh sửa danh mục</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -29,7 +29,7 @@ include_once('layouts/sidebar.php')
 		<div class="card-header">
 			<h3 class="card-title">Nội dung</h3>
 		</div>
-		<form action="index.php?mod=category&act=update&id=<?php echo $category['id'] ?>" method="POST" role="form" >
+		<form action="index.php?mod=category&act=update&id=<?php echo $category['id'] ?>" method="POST" role="form" id="formAddCate" name="formAddCate">
 			<div class="card-body">
 				<input type="hidden" name="id" value="<?= $category['id'] ?>">
 				<div class="form-group">
@@ -37,8 +37,8 @@ include_once('layouts/sidebar.php')
 					<input type="text" class="form-control" name="name" id="title" onkeyup="ChangeToSlug()" value="<?= $category['name'] ?>">
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Đường dẫn danh mục</label>
-					<input type="text" class="form-control" name="slug" id="slug" value="<?= $category['slug'] ?>">
+					<!-- <label for="exampleInputEmail1">Đường dẫn danh mục</label> -->
+					<input type="hidden" class="form-control" name="slug" id="slug" value="<?= $category['slug'] ?>">
 				</div>
 				<div class="form-group">
 					<label>Danh mục</label>

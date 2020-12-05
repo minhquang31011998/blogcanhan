@@ -16,7 +16,7 @@ include_once('layouts/sidebar.php')
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Danh sách bài viết</li>
+						<li class="breadcrumb-item active">Danh sách danh mục</li>
 					</ol>
 				</div>
 			</div>
@@ -29,39 +29,28 @@ include_once('layouts/sidebar.php')
 		<!-- Default box -->
 		<div class="card card-primary">
 			<div class="card-header">
-				<h3 class="card-title">Danh sách bài viết</h3>
+				<h3 class="card-title">Danh sách danh mục</h3>
 			</div>
 			<div class="card-body">
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
-							<div class="card-header">
-								<div class="card-tools">
-									<div class="input-group input-group-sm" style="width: 150px;">
-										<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-										<div class="input-group-append">
-											<button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-										</div>
-									</div>
-								</div>
-							</div>
 							<!-- /.card-header -->
 							<div class="card-body table-responsive p-0" style="height: 800px;">
 								<table class="table table-head-fixed">
 									<thead>
 										<tr>
-											<th>ID</th>
+											<th>STT</th>
 											<th>Danh mục</th>
 											<th>Danh mục cha</th>
 											<th>Hành động</th>
 										</tr>
 									</thead>
 									
-									<?php foreach( $childs as $rows )  {  ?>
+									<?php $i=0; foreach( $childs as $rows )  {  ?>
 										
 										<tr>
-											<td><?php echo $rows['id'] ?></td>
+											<td><?php $i++; echo $i ?></td>
 											<td><?php echo $rows['name'] ?></td>
 											
 											<td><?php foreach( $categories as $row )  { ?><?php if($rows['parent_id']==$row['id']) echo $row['name'] ?><?php } ?></td>
@@ -69,8 +58,7 @@ include_once('layouts/sidebar.php')
 											<td  style="display: flex;">
 												
 												<a href="index.php?mod=category&act=edit&id=<?php echo $rows['id'] ?>" class="btn btn-success">Edit</a>
-												<a href="index.php?mod=category&act=hide&id=<?php echo $rows['id'] ?>" class="btn btn-dark">Hide</a>
-												<a href="index.php?mod=category&act=delete&id=<?php echo $rows['id'] ?>" class="btn btn-danger">Delete</a>
+												<a href="index.php?mod=category&act=delete&id=<?php echo $rows['id'] ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Delete</a>
 											</td>
 										</tr>
 										
